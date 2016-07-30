@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
         copyImg=(TextView) findViewById(R.id.activity_main_copy);
 
         ApodService apodService= Data.getRetrofitInstance().create(ApodService.class);
-        Call<Apod> callApodService =apodService.getTodayPod(BuildConfig.NasaApiKey,"2016-06-27");
+        Call<Apod> callApodService =apodService.getTodayPod(BuildConfig.NasaApiKey,"2016-06-28");
 
         callApodService.enqueue(new Callback<Apod>(){
             @Override
