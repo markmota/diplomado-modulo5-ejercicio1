@@ -3,6 +3,8 @@ package modulo5.ddam.markmota.tk.space;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import retrofit2.Call;
+
+import android.text.TextUtils;
 import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -32,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
         copyImg=(TextView) findViewById(R.id.activity_main_copy);
 
         ApodService apodService= Data.getRetrofitInstance().create(ApodService.class);
-        Call<Apod> callApodService =apodService.getTodayPod(BuildConfig.NasaApiKey,"2015-11-27");
+        Call<Apod> callApodService =apodService.getTodayPod(BuildConfig.NasaApiKey,"2016-06-27");
 
         callApodService.enqueue(new Callback<Apod>(){
             @Override
@@ -47,7 +49,10 @@ public class MainActivity extends AppCompatActivity {
                 titleImg.setText(titleImage);
                 descImg.setText(descImage);
                 dateImg.setText(dateImage);
-                copyImg.setText(copyImage);
+                if(TextUtils.isEmpty(copyImage))
+                    copyImg.setText("by Anonymous");
+                else
+                    copyImg.setText("by "+copyImage);
                 Picasso.with(getApplicationContext())
                         .load(imageToUse)
                         .resize(500, 300)
