@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import retrofit2.Call;
 
 import android.text.TextUtils;
@@ -31,18 +32,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-
-        /* Replacing this for code using butter knife
-        appImg= (ImageView) findViewById(R.id.activity_main_image);
-        titleImg=(TextView) findViewById(R.id.activity_main_title);
-        descImg=(TextView) findViewById(R.id.activity_main_desc);
-        dateImg=(TextView) findViewById(R.id.activity_main_date);
-        copyImg=(TextView) findViewById(R.id.activity_main_copy);
-         */
-
-
-
+        ButterKnife.bind(this);
         ApodService apodService= Data.getRetrofitInstance().create(ApodService.class);
         Call<Apod> callApodService =apodService.getTodayPod(BuildConfig.NasaApiKey,"2016-06-27");
 
