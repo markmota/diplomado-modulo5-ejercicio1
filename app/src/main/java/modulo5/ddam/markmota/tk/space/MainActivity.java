@@ -2,6 +2,8 @@ package modulo5.ddam.markmota.tk.space;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import butterknife.BindView;
 import retrofit2.Call;
 
 import android.text.TextUtils;
@@ -18,20 +20,28 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
-    private ImageView appImg;
-    private TextView titleImg;
-    private TextView descImg;
-    private TextView dateImg;
-    private TextView copyImg;
+    // Here we replace the code setting the variables binding to the views using butter knife
+    @BindView(R.id.activity_main_image) ImageView appImg;
+    @BindView(R.id.activity_main_title) TextView titleImg;
+    @BindView(R.id.activity_main_desc) TextView descImg;
+    @BindView(R.id.activity_main_date) TextView dateImg;
+    @BindView(R.id.activity_main_copy) TextView copyImg;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
+        /* Replacing this for code using butter knife
         appImg= (ImageView) findViewById(R.id.activity_main_image);
         titleImg=(TextView) findViewById(R.id.activity_main_title);
         descImg=(TextView) findViewById(R.id.activity_main_desc);
         dateImg=(TextView) findViewById(R.id.activity_main_date);
         copyImg=(TextView) findViewById(R.id.activity_main_copy);
+         */
+
+
 
         ApodService apodService= Data.getRetrofitInstance().create(ApodService.class);
         Call<Apod> callApodService =apodService.getTodayPod(BuildConfig.NasaApiKey,"2016-06-27");
